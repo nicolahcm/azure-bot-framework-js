@@ -1,0 +1,76 @@
+{
+    "type": "AdaptiveCard",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Notifica di approvazione",
+        "wrap": true,
+        "size": "ExtraLarge",
+        "color": "Good"
+      },
+      {
+        "type": "TextBlock",
+        "text": "Dettagli richiesta",
+        "wrap": true,
+        "color": "Warning",
+        "spacing": "Medium",
+        "size": "Medium"
+      },
+      {
+        "type": "FactSet",
+        "spacing": "Large",
+        "facts": [
+          {
+            "title": "Request ID",
+            "value": "${requestNumber}"
+          },
+          {
+            "title": "Title",
+            "value": "${title}"
+          },
+          {
+            "title": "Request Status",
+            "value": "${status}"
+          },
+          {
+            "title": "Requested(For)",
+            "value": "${requestedFor}"
+          },
+          {
+            "title": "Company",
+            "value": "${company}"
+          },
+          {
+            "title": "Requested(By)",
+            "value": "${requestedBy}"
+          },
+          {
+            "title": "Submit Date",
+            "value": "${submitDate}"
+          },
+          {
+            "title": "Notes",
+            "value": "${notes}"
+          },
+          {
+            "title": "Request Details",
+            "value": "${reqDetails}"
+          },
+          {
+            "title": "Approval History",
+            "value": "${approvalHistory}"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.OpenUrl",
+        "title": "Launch Approval Central",
+        "id": "launchApprovalCentralID",
+        "url": "https://nuovaassistenza-dir.generali.it/arsys/forms/lmlifh25itp100/Approval%20Central"
+      }
+    ]
+  }

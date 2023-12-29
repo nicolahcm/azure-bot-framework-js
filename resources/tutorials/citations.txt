@@ -1,0 +1,5 @@
+1. https://github.com/microsoft/AdaptiveCards/issues/2448 
+Templating of Adaptive Cards 
+    - npm install adaptivecards-templating
+
+2. 
