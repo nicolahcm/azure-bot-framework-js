@@ -1,4 +1,6 @@
 const { MessageFactory } = require('botbuilder');
+
+const { SubDialog } = require('./SubDialog');
 const {
     ChoiceFactory,
     ChoicePrompt,
@@ -30,11 +32,13 @@ class RequestDialog extends ComponentDialog {
         this.addDialog(new ChoicePrompt(CHOICE_PROMPT));
         this.addDialog(new ConfirmPrompt(CONFIRM_PROMPT));
 
+        this.addDialog(new SubDialog(conversationState))
+
         this.addDialog(new WaterfallDialog(WATERFALL_DIALOG, [
             this.transportStep.bind(this),
             this.nameStep.bind(this),
             this.nameConfirmStep.bind(this),
-            this.summaryStep.bind(this)
+            this.startNextSubDialog.bind(this)
         ]));
 
         this.initialDialogId = WATERFALL_DIALOG;
@@ -96,25 +100,13 @@ class RequestDialog extends ComponentDialog {
     }
 
 
-
-
-    async summaryStep(step) {
-        if (step.result) {
-            let your_transport =  step.values.transport;
-            let your_name = step.values.name;
-            let msg = `I have your mode of transport as ${ your_transport } and your name as ${ your_name }`;
-            msg += '.';
-            await step.context.sendActivity(msg);
-        } else {
-            await step.context.sendActivity('Thanks. Your profile will not be kept.');
-        }
-        // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is the end.
-        return await step.endDialog();
+    async startNextSubDialog(step) {
+        return await step.beginDialog("SubDialog")
     }
 
-
-
-    
 }
+
+
+
 
 module.exports.RequestDialog = RequestDialog;

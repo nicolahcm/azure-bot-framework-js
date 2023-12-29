@@ -32,7 +32,7 @@ class RemedyBot extends ActivityHandler {
             // let myCard = getAdaptiveCard(replyText);
             // await context.sendActivity({ 
             //     attachments: [CardFactory.adaptiveCard(myCard)] 
-            // });
+            // }); 
 
             await this.requestDialog.run(context, this.dialogState);
 
